@@ -52,7 +52,6 @@ class WelcomeScreen extends StatelessWidget {
               padding: const EdgeInsets.only(left: 87, right: 95, bottom: 100),
               child: ReusableButton(
                 alpha: 150,
-                borderColor: AppColors.grey,
 
                 name: "Get Started",
                 nav: () {

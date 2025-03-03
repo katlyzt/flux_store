@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:flux_store/global_widgets/reuable_button.dart';
-import 'package:flux_store/utils/constants/colors.dart';
 import 'package:flux_store/global_widgets/custom_text_field.dart';
-import 'package:flux_store/view/login_screen/login_screen.dart';
+import 'package:flux_store/global_widgets/reuable_button.dart';
+import 'package:flux_store/view/bottom_nav_bar_screen/bottom_nav_bar_screen.dart';
+import 'package:flux_store/view/sign_up_%20screen/sign_up_screen.dart';
 
-class SignUpScreen extends StatelessWidget {
-  const SignUpScreen({super.key});
+class LoginScreen extends StatefulWidget {
+  const LoginScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    TextEditingController? nameController;
-    TextEditingController? emailController;
-    TextEditingController? passwordController;
-    TextEditingController? confirmPasswordController;
+  State<LoginScreen> createState() => _LoginScreenState();
+}
 
+class _LoginScreenState extends State<LoginScreen> {
+  @override
+  Widget build(BuildContext context) {
     return SafeArea(
       bottom: false,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         body: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 33),
           child: Column(
@@ -24,7 +25,7 @@ class SignUpScreen extends StatelessWidget {
             children: [
               SizedBox(height: 58),
               Text(
-                "Create \nYour Account",
+                "Log into \nYour Account",
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -32,39 +33,38 @@ class SignUpScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(height: 39),
-              CustomTextField(
-                controller: nameController,
-                hintText: "Enter your name",
-              ),
 
-              CustomTextField(
-                controller: emailController,
-                hintText: "Email address",
-              ),
+              CustomTextField(hintText: "Email address"),
 
-              CustomTextField(
-                controller: passwordController,
-                hintText: "Password",
+              CustomTextField(hintText: "Password"),
+              SizedBox(height: 28),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text("Forgot password", style: TextStyle(fontSize: 12)),
+                ],
               ),
-
-              CustomTextField(
-                controller: confirmPasswordController,
-                hintText: "Confirm Password",
-                bottomPadding: 40,
-              ),
+              SizedBox(height: 25),
               Center(
                 child: ReusableButton(
                   borderColor: Colors.black,
                   buttonColor: Colors.black,
-                  name: "Sign Up",
-                  nav: () {},
+                  name: "Log In",
+                  nav: () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => BottomNavBarScreen(),
+                      ),
+                    );
+                  },
                 ),
               ),
               SizedBox(height: 28),
               Center(
-                child: Text("or sign up with", style: TextStyle(fontSize: 18)),
+                child: Text("or login with", style: TextStyle(fontSize: 18)),
               ),
-              SizedBox(height: 28),
+              SizedBox(height: 23),
               Row(
                 spacing: 20,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -74,25 +74,26 @@ class SignUpScreen extends StatelessWidget {
                   Icon(Icons.circle, size: 42),
                 ],
               ),
-              SizedBox(height: 30),
+              Spacer(),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    "aleardy have an account?, login",
+                    "don't have an account?,",
                     style: TextStyle(fontSize: 14),
                   ),
                   TextButton(
                     onPressed: () {
                       Navigator.pushReplacement(
                         context,
-                        MaterialPageRoute(builder: (context) => LoginScreen()),
+                        MaterialPageRoute(builder: (context) => SignUpScreen()),
                       );
                     },
-                    child: Text("Login"),
+                    child: Text("Sign Up"),
                   ),
                 ],
               ),
+              SizedBox(height: 63),
             ],
           ),
         ),
